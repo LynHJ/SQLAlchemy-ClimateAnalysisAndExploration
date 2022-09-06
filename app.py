@@ -106,7 +106,7 @@ def tobs():
     # Query the dates the most active station for the previous year of data
     
 
-    most_recent_date=session.query(Measurement.date).filter(Measurement.station==most_active_station).        order_by(Measurement.date.desc()).first()
+    most_recent_date=session.query(Measurement.date).filter(Measurement.station==most_active_station).order_by(Measurement.date.desc()).first()
     
     most_recent_date=dt.datetime.strptime(most_recent_date[0], '%Y-%m-%d').date()
     
@@ -114,7 +114,7 @@ def tobs():
     
     # Query the most active station for the previous year of data
     
-    Post12M_most_active_station=session.query(Measurement.tobs).        filter(Measurement.date>=DateYaerAgo).filter(Measurement.station==most_active_station).all()
+    Post12M_most_active_station=session.query(Measurement.tobs).filter(Measurement.date>=DateYaerAgo).filter(Measurement.station==most_active_station).all()
 
     results=[Post12M_most_active_station[i][0] for i in range(0,len(Post12M_most_active_station))]
     
@@ -125,52 +125,10 @@ def tobs():
     return jsonify(results)
 
 @app.route("/api/v1.0/<start>")
-
-def DataAfterStartDate(start):
-    """Fetch the data after start date which matchs the path variable supplied by the user, or a 404 if not."""
-    import re
-    
-    # Create our session (link) from Python to the DB
-    
-    session = Session(engine)
- 
-    # Query 
-    canonicalised = re.sub("([^\u0030-\u0039])", '', start)
-    
-    dates=session.query(Measurement.date).all()
-    date_values=[dates[i][0] for i in range(0,len(dates))]
-
-    for date in date_values:
-        search_term = date.replace('-','')
-        
-        if search_term == canonicalised:
-            
-            TMIN=session.query(func.min(Measurement.tobs)).filter(Measurement.date>=date)
-            minT=round(TMIN[0][0],2)
-            TAVG=session.query(func.avg(Measurement.tobs)).filter(Measurement.date>=date)
-            avgT=round(TAVG[0][0],2)
-            TMAX=session.query(func.max(Measurement.tobs)).filter(Measurement.date>=date)
-            maxT=round(TMAX[0][0],2)
-            
-            min=f"The minimun temperature between {start} is {minT} degrees celsius."
-            avg=f"The average temperature between {start} is {avgT} degrees celsius."
-            max=f"The maximum temperature between {start} is {maxT} degrees celsius."
-            result=[min,avg,max]
-
-            return jsonify (result)
-            
-    
-
-    session.close()
-
-    # Return a JSON list of stations from the dataset
-    
-    return jsonify({"error": f"Data with {start} not found."}), 404
-
 @app.route("/api/v1.0/<start>/<end>")
-
-def DataBetweenDates(start,end):
-    """Fetch the data between start date and end date which match the path variable supplied by the user, or a 404 if not."""
+def DataBasedOnDate(start=None,end=None):
+    """Fetch the data after start date which matchs the path variable supplied by the user, or a 404 if not."""
+    
     import re
     
     # Create our session (link) from Python to the DB
@@ -178,46 +136,57 @@ def DataBetweenDates(start,end):
     session = Session(engine)
  
     # Query 
-    canonicalised1= re.sub("([^\u0030-\u0039])", '', start)
-    canonicalised2= re.sub("([^\u0030-\u0039])", '', end)
-
+    
     dates=session.query(Measurement.date).all()
     date_values=[dates[i][0] for i in range(0,len(dates))]
+    
+    canonicalised1 = re.sub("([^\u0030-\u0039])", '', start)
+    if not end:
+        #get rid off any symbols and only keep numbers
+        
+    
+        for date in date_values:
+            search_term = date.replace('-','')
+            
+            if search_term == canonicalised1:
+                
+                result=session.query(func.min(Measurement.tobs),func.avg(Measurement.tobs),func.max(Measurement.tobs)).filter(Measurement.date>=date).all()
+                ResultValue=[data for data in result[0]]
 
+                min=f"The minimun temperature after {start} is {round(ResultValue[0],2)} degrees celsius."
+                avg=f"The average temperature after {start} is {round(ResultValue[1],2)} degrees celsius."
+                max=f"The maximum temperature after {start} is {round(ResultValue[2],2)} degrees celsius."
+                output=[min,avg,max]
+                
+                return jsonify (output)
+
+    canonicalised2 = re.sub("([^\u0030-\u0039])", '', end)    
     for date1 in date_values:
         search_term1 = date1.replace('-','')
         for date2 in date_values:
             search_term2 = date2.replace('-','')
             if search_term1 == canonicalised1 and search_term2 == canonicalised2:
                 
-                TMIN=session.query(func.min(Measurement.tobs)).filter(Measurement.date>=date1).filter(Measurement.date>=date2)
-                minT=round(TMIN[0][0],2)
-                TAVG=session.query(func.avg(Measurement.tobs)).filter(Measurement.date>=date1).filter(Measurement.date>=date2)
-                avgT=round(TAVG[0][0],2)
-                TMAX=session.query(func.max(Measurement.tobs)).filter(Measurement.date>=date1).filter(Measurement.date>=date2)
-                maxT=round(TMAX[0][0],2)
-                
-                min=f"The minimun temperature between {start} and {end} is {minT} degrees celsius."
-                avg=f"The average temperature between {start} and {end} is {avgT} degrees celsius."
-                max=f"The maximum temperature between {start} and {end} is {maxT} degrees celsius."
-                result=[min,avg,max]
+                result=session.query(func.min(Measurement.tobs),func.avg(Measurement.tobs),func.max(Measurement.tobs)).filter(Measurement.date>=date1).filter(Measurement.date>=date2).all()
+                ResultValue=[data for data in result[0]]
 
-                return jsonify (result)
+                min=f"The minimun temperature between {start} and {end} is {round(ResultValue[0],2)} degrees celsius."
+                avg=f"The average temperature between {start} and {end} is {round(ResultValue[1],2)} degrees celsius."
+                max=f"The maximum temperature between {start} and {end} is {round(ResultValue[2],2)} degrees celsius."
+                output=[min,avg,max]
+
+                return jsonify (output)            
 
     session.close()
 
-    # Return a JSON list of stations from the dataset
-    
-    return jsonify({"error": f"Data with {start} not found."}), 404
-
-
-
+        # Return a JSON list of stations from the dataset
+        
+    return jsonify({"error": f"Data between {start} and {end} are not found."}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
 
 
-# In[ ]:
 
 
 
