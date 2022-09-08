@@ -67,17 +67,14 @@ Project
 |-AdvancedTempAnalysis1.ipynb  
 |-AdvancedTempAnalysis2.ipynb   
 |-ClimateAnalysis.ipynb  
-|-app.py    
+|-app.py 
+|-requirements.txt   
 |-README.md   
 
 
 ## Installation
 
-1.conda env create -n PythonData --file intro_python_requirements_osx.yml python=3.7.7  
-2.conda install -c anaconda sqlite  
-3.sqlalchemy    
-4.conda install matplotlib     
-
+pip install -r requirements.txt
 
 
 
