@@ -51,13 +51,16 @@ According to the picture above,the distribution of temperature is a left-skewed-
 
 
 ### WeatherApp
+![alt text](https://github.com/LynHJ/Sqlalchemy-Climate-Analysis-and-Exploration/blob/5b71fd4f3d2121b29013dfdfcf2d6b3c54a208fd/OutputData/app.png)
+
 I use flask to do a simple web framework.
 By excuting 'app.py',I can run the route to get basic weather data or input Start/End date to get specific time period weather data.
 
 ## Content:
 Project  
 |     
-|-OutputData:|-daily-normals.png    
+|-OutputData:|-app.png  
+|&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|-describe.png       
 |&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|-describe.png  
 |&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|-precipitation.png  
 |&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|-station-histogram.png  
