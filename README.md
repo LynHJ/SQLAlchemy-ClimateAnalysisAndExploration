@@ -23,26 +23,32 @@ The rainfall pattern of Hawaii is quite clear. There are four times of heavy rai
 According to the picture above,the distribution of temperature is a left-skewed-distribution.It indicates that most of the time in Hawaii, the temperature ranges around 22-26 degrees​ and ​​there is a cool weather period.
 
 
-### Advanced Data Analysis
+### Advanced Data Analysis1
 
-1. Conduct an analysis :Is there a meaningful difference between the temperatures in June and December?  
+§Conduct an analysis :Is there a meaningful difference between the temperatures in June and December?  
   
-There are some premises we need to go through to make sure the result of T-test is Statistically meaningful.  
+0. There are some premises we need to go through to make sure the result of T-test is Statistically meaningful.  
 1. Normal Distribution.->temperature is a normal distribution  
 2. Independent variable.-> the weather condition in June won't affect the weather condition in December.  
 3. Ｈomogeneity in the two groups of variance-> Run levene test  
 4. Sample Size: The size of two gorups is different. ->Run unpaired T-test.   
 5. H0:mean(June)=mean(December)  
-&emsp;&emsp;H1:mean(June)≠mean(December)
+&emsp;H1:mean(June)≠mean(December)
+
+#### Summary for Advanced Data Analysis1
+•levene-test: p-value(0.001)<0.05  ->Heteroscedasticity in the two groups of variance, run adjusted T-test(equal_var=False).  
+•unpaired t-test result:p-value<0.05 ->Reject H0, The average temperature in June is differ than the average temperature in December.
   
 ---------------------------------------------------------------------------------------------------------
-levene-test: p-value(0.001)<0.05  ->Heteroscedasticity in the two groups of variance, run adjusted T-test(equal_var=False).  
-unpaired t-test result:p-value<0.05 ->Reject H0, The average temperature in June is differ than the average temperature in December.  
-
-2. Based on my travel time period, I investigate the daily rainfall amount and temperature.  
+### Advanced Data Analysis1
+§Based on my travel time period, I investigate the daily rainfall amount and temperature.
+ 
 ![alt text](https://github.com/LynHJ/Sqlalchemy-Climate-Analysis-and-Exploration/blob/450c53707646bbf2ac81fcbc325bc7352d6ccd37/OutputData/daily-normals.png)  
 
 #### Summary for Advanced Data Analysis
+•The amount of precipitation is less than 10mm during the time period I have set.
+•According to the picture above,the temperature is stable. The temperature range is around 20ºc to 28ºc
+
 
 
 
@@ -56,8 +62,8 @@ Project
 |&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|-temperature.png  
 |&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|-Data Analysis5.sql    
 |-Resources:|-hawaii.sqlite    
-|&emsp;&emsp;&emsp;&emsp;&emsp;|-hawaii_measurements.csv  
-|&emsp;&emsp;&emsp;&emsp;&emsp;|-hawaii_stations.csv  
+|&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;|-hawaii_measurements.csv  
+|&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;|-hawaii_stations.csv  
 |-AdvancedTempAnalysis1.ipynb  
 |-AdvancedTempAnalysis2.ipynb   
 |-ClimateAnalysis.ipynb  
