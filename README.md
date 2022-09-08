@@ -67,8 +67,8 @@ Project
 |-AdvancedTempAnalysis1.ipynb  
 |-AdvancedTempAnalysis2.ipynb   
 |-ClimateAnalysis.ipynb  
-|-app.py 
-|-requirements.txt   
+|-app.py   
+|-requirements.txt     
 |-README.md   
 
 
