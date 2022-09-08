@@ -36,8 +36,8 @@ According to the picture above,the distribution of temperature is a left-skewed-
 &emsp;H1:mean(June)≠mean(December)
 
 #### Summary for Advanced Data Analysis1
-•levene-test: p-value(0.001)<0.05  ->Heteroscedasticity in the two groups of variance, run adjusted T-test(equal_var=False).  
-•unpaired t-test result:p-value<0.05 ->Reject H0, The average temperature in June is differ than the average temperature in December.
+1.levene-test: p-value(0.001)<0.05  ->Heteroscedasticity in the two groups of variance, run adjusted T-test(equal_var=False).  
+2. unpaired t-test result:p-value<0.05 ->Reject H0, The average temperature in June is differ than the average temperature in December.
   
 ---------------------------------------------------------------------------------------------------------
 ### Advanced Data Analysis1
@@ -46,8 +46,8 @@ According to the picture above,the distribution of temperature is a left-skewed-
 ![alt text](https://github.com/LynHJ/Sqlalchemy-Climate-Analysis-and-Exploration/blob/450c53707646bbf2ac81fcbc325bc7352d6ccd37/OutputData/daily-normals.png)  
 
 #### Summary for Advanced Data Analysis
-•The amount of precipitation is less than 10mm during the time period I have set.
-•According to the picture above,the temperature is stable. The temperature range is around 20ºc to 28ºc
+1. The amount of precipitation is less than 10mm during the time period I have set.
+2. According to the picture above,the temperature is stable. The temperature range is around 20ºc to 28ºc
 
 
 
@@ -62,8 +62,8 @@ Project
 |&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|-temperature.png  
 |&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|-Data Analysis5.sql    
 |-Resources:|-hawaii.sqlite    
-|&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;|-hawaii_measurements.csv  
-|&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;|-hawaii_stations.csv  
+|&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|-hawaii_measurements.csv  
+|&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|-hawaii_stations.csv  
 |-AdvancedTempAnalysis1.ipynb  
 |-AdvancedTempAnalysis2.ipynb   
 |-ClimateAnalysis.ipynb  
