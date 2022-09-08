@@ -41,13 +41,15 @@ app = Flask(__name__)
 def homepage():
     '''List all available routes.'''
     return(
-        f"Available Routes:<br/>"
-        f"/api/v1.0/precipitation<br/>"
-        f"/api/v1.0/stations<br/>"
-        f"/api/v1.0/tobs<br/>"
-        f'For searching specific time duration:<br/>'
-        f"/api/v1.0/<start><br/>"
-        f"/api/v1.0/<start>/<end><br/>"
+        f"<h1>Wellcome to Hawaii Weather App</h1><br/>"
+        f"<h2>Available Routes:</h2><br/>"
+        f"&emsp;/api/v1.0/precipitation<br/>"
+        f"&emsp;/api/v1.0/stations<br/>"
+        f"&emsp;/api/v1.0/tobs<br/>"
+        f"<h2>For searching specific time duration:</h2><br/>"
+        f"<h6>Input start date in year,month,day after'/' or a duration with 2 dates splited by '/'</h6><br/>"
+        f"&emsp;/api/v1.0/<start></<br/>"
+        f"&emsp;/api/v1.0/<start>/<end><br/>"
     )    
 
 @app.route("/api/v1.0/precipitation")
