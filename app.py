@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[15]:
-
-
 import numpy as np
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
@@ -11,20 +5,26 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 from flask import Flask, jsonify
 import datetime as dt
-from datetime import date, timedelta, datetime
+from datetime import timedelta
 
 # Database Setup
 #################################################
-engine = create_engine("sqlite:///Resources/hawaii.sqlite",echo=False)
+
+engine = create_engine("sqlite:///hawaii.sqlite",echo=False)
 
 # reflect an existing database into a new model
+
 Base = automap_base()
+
 # reflect the tables
+
 Base.prepare(engine, reflect=True)
 
 
 # Save reference to the table
+
 Measurement = Base.classes.measurement
+
 Station = Base.classes.station
 
 #################################################
@@ -61,6 +61,7 @@ def precipitation():
     # Query all date and precipitation
     
     results = session.query(Measurement.prcp).all()
+
     dates = session.query(Measurement.date).all()
     
     #Convert the query results to a dictionary using `date` as the key and `prcp` as the value.

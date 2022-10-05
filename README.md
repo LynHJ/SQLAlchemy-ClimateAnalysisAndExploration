@@ -77,11 +77,11 @@ Project
 │   └── temperature.png
 ├── README.md
 ├── Resources
-│   ├── hawaii.sqlite
 │   ├── hawaii_measurements.csv
 │   └── hawaii_stations.csv
 ├── app.ipynb
 ├── app.py
+├── hawaii.sqlite
 ├── requirements.txt
 
 ```
