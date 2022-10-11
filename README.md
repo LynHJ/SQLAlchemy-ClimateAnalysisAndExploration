@@ -1,4 +1,4 @@
-# Sqlalchemy-Climate-Analysis-and-Exploration
+# Climate Analysis And Exploration
 
 
 ## Background
