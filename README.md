@@ -1,5 +1,11 @@
 # Climate Analysis And Exploration
 
+![](https://img.shields.io/badge/Flask-1.1.2-informational?style=plastic&logo=appveyor)
+![](https://img.shields.io/badge/SQLAlchemy-1.4.40-informational?style=plastic&logo=appveyor)
+![](https://img.shields.io/badge/numpy-1.23.4-informational?style=plastic&logo=appveyor)
+![](https://img.shields.io/badge/pandas-1.0.3-informational?style=plastic&logo=appveyor)
+![](https://img.shields.io/badge/scipy-1.4.1-informational?style=plastic&logo=appveyor)
+
 
 ## Background
 
